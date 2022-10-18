@@ -37,9 +37,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "exercice",
+    #"exercice",
     "stock",
-    "ventes"
+    "ventes",
+    "pieces",
+
+    'corsheaders',
+    'rest_framework',
+    'django_filters'
 ]
 
 MIDDLEWARE = [
@@ -118,3 +123,30 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+
+# configuration du rest_framework 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES':[
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES':[
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
+
+# authentification par les tokens: configuration 
+
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+       'ACCESS_TOKEN_LIFETIME':timedelta(hours=10), # temps d'expiration
+       'REFRESH_TOKEN_LIFETIME':timedelta(days=3), # temps de rafraichiment
+       'AUTH_HEADER_TYPES': ('PIECES', ),
+    }
