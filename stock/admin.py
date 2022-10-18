@@ -18,14 +18,14 @@ admin.site.register(Fournisseur,FournisseurFilter)
 
 
 class MagasinFilter(admin.ModelAdmin):
-    list_display = ('id','nom')
+    list_display = ('id','nom', 'dateCreation')
     list_filter = ('nom',)
 
 admin.site.register(Magasin,MagasinFilter)
 
 class PieceStockéeFilter(admin.ModelAdmin):
-    list_display = ('id','piece','quantiteStockee')
-    list_filter = ('piece',)
+    list_display = ('id','designation','quantiteStockee')
+    list_filter = ('designation',)
 
 admin.site.register(PieceStockée,PieceStockéeFilter)
 
