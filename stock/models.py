@@ -1,6 +1,7 @@
 
 from django.db import models
 from exercices.models import Exercice
+from pieces.models import Piece
 
 # Model du package gestion du stock
 
@@ -45,23 +46,14 @@ class Fournisseur(models.Model):
     
     def __str__(self):
         return f'{self.nom} {self.prenom}' 
-class PieceStockée(models.Model):
-    designation = models.CharField(max_length=50)
-    categorie = models.ForeignKey(Categorie,on_delete=models.CASCADE, related_name="pieces")
-    quantiteStockee = models.IntegerField(default=0)
-    #dateCreation = models.DateTimeField(auto_now_add=True)
-    class Meta:
-        ordering = ['id','designation','quantiteStockee', 'categorie' ]
-    
-    def __str__(self):
-        return f'{self.designation}'
+
     
 class Magasin(models.Model):
     nom = models.CharField(max_length=255)
-    listPieceSortie = models.ManyToManyField(to=PieceStockée,through='InfosSortie', 
+    listPieceSortie = models.ManyToManyField(to=Piece,through='InfosSortie', 
                                             through_fields=('magasin','piece'), related_name="magasinSortie")
     
-    listPieceEntree = models.ManyToManyField(to=PieceStockée,through='QuantitéStock',
+    listPieceEntree = models.ManyToManyField(to=Piece,through='QuantitéStock',
                                             through_fields=('magasin','piece'),related_name="magasinEntree")
     
     dateCreation = models.DateTimeField(auto_now_add=True)
@@ -73,7 +65,7 @@ class Magasin(models.Model):
 
 
 class QuantitéStock(models.Model):
-    piece = models.ForeignKey(PieceStockée,on_delete=models.CASCADE, related_name='info_local')
+    piece = models.ForeignKey(Piece,on_delete=models.CASCADE, related_name='info_local')
     quantiteStockee = models.IntegerField(default=0)
     magasin = models.ForeignKey(Magasin,on_delete=models.CASCADE, related_name="info_quantite")
     prix = models.FloatField(default=0)
@@ -88,7 +80,7 @@ class QuantitéStock(models.Model):
 
 class InfosSortie(models.Model):
     magasin = models.ForeignKey(Magasin,on_delete=models.CASCADE, related_name="info_sortie")
-    piece = models.ForeignKey(PieceStockée,on_delete=models.CASCADE, related_name='info_sortie')
+    piece = models.ForeignKey(Piece,on_delete=models.CASCADE, related_name='info_sortie')
     
     quantite = models.IntegerField(default=0)
     prixSortie = models.FloatField(default=0)
@@ -117,7 +109,7 @@ class CommandeFournisseur(models.Model):
 
 class LigneCommande(models.Model):
     commandeFournisseur = models.ForeignKey(CommandeFournisseur,on_delete=models.CASCADE, related_name="info_ligneCommande")
-    pieceStockée = models.ForeignKey(PieceStockée,on_delete=models.CASCADE, related_name='info_ligneCommande')
+    piece = models.ForeignKey(Piece,on_delete=models.CASCADE, related_name='info_ligneCommande')
     quantiteCommande = models.IntegerField(default=0)
     quantiteRecu = models.IntegerField(default=0)
     #dateCreation = models.DateTimeField(auto_now_add=True)

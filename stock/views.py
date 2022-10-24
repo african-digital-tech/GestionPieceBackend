@@ -2,9 +2,9 @@ from django.shortcuts import render
 from rest_framework import  generics,permissions
 from rest_framework.response import Response
 import rest_framework.status as status
-from stock.models import CommandeFournisseur, Facture, Fournisseur, Gerant, InfosSortie, LigneCommande, Magasin, PaiementFournisseur, PieceStockée, QuantitéStock
+from stock.models import CommandeFournisseur, Facture, Fournisseur, Gerant, InfosSortie, LigneCommande, Magasin, PaiementFournisseur, QuantitéStock
 
-from stock.serializers import CommandeFournisseurSerializer, FactureSerializer, FournisseurSerializer, GerantSerializer, InfosSortieSerializer, LigneCommandeSerializer, MagasinSerializer, PaiementFournisseurSerializer, PieceStockéeSerializer, QuantitéStockSerializer
+from stock.serializers import CommandeFournisseurSerializer, FactureSerializer, FournisseurSerializer, GerantSerializer, InfosSortieSerializer, LigneCommandeSerializer, MagasinSerializer, PaiementFournisseurSerializer, QuantitéStockSerializer
 
 #### Gerant
  
@@ -81,32 +81,6 @@ class RetriveUpdateDelMagasin(generics.RetrieveUpdateDestroyAPIView):
     permission_class = [permissions.IsAdminUser]
 
 ret_update_MagasinAPIView = RetriveUpdateDelMagasin.as_view()
-
-
-##### PieceStockée
-
-class PieceStockéeListCreateAPIView(generics.ListCreateAPIView):
-    '''
-        get, post
-    '''
-
-    queryset = PieceStockée.objects.all()
-    serializer_class = PieceStockéeSerializer
-    paginator = None
-liste_create_PieceStockéeAPIView = PieceStockéeListCreateAPIView.as_view()
-
-
-class RetriveUpdateDelPieceStockée(generics.RetrieveUpdateDestroyAPIView):
-
-    '''
-        Cette classe permet de faire get update, delete
-    '''
-
-    queryset = PieceStockée.objects.all()
-    serializer_class = PieceStockéeSerializer
-    permission_class = [permissions.IsAdminUser]
-
-ret_update_PieceStockéeAPIView = RetriveUpdateDelPieceStockée.as_view()
 
 
 

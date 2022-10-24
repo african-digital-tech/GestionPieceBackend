@@ -1,7 +1,7 @@
 
 from rest_framework import  serializers
 
-from stock.models import CommandeFournisseur, Facture, Fournisseur, Gerant, InfosSortie, LigneCommande, Magasin, PaiementFournisseur, PieceStockée, QuantitéStock
+from stock.models import CommandeFournisseur, Facture, Fournisseur, Gerant, InfosSortie, LigneCommande, Magasin, PaiementFournisseur, QuantitéStock
 
 
 class GerantSerializer(serializers.ModelSerializer):
@@ -34,14 +34,7 @@ class MagasinSerializer(serializers.ModelSerializer):
         fields= '__all__'
 
 
-class PieceStockéeSerializer(serializers.ModelSerializer):
-    '''
-        Liste de toutes les pièces stockées
-    '''
 
-    class Meta:
-        model= PieceStockée
-        fields = '__all__'
 
 
 

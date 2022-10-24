@@ -37,14 +37,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    
-    #Application Externe
     "exercices",
     "stock",
     "ventes",
     "pieces",
 
-    # rest_framework configuration
     'corsheaders',
     'rest_framework',
     'django_filters'
@@ -53,10 +50,6 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    
-        # Ajout du middeware de CorsMiddleware pour le front
-    'corsheaders.middleware.CorsMiddleware',
-    
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",

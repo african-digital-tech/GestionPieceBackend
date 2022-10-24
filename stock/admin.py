@@ -1,6 +1,7 @@
 from django.contrib import admin
+from pieces.models import Piece
 
-from stock.models import CommandeFournisseur, Facture, Fournisseur, InfosSortie, LigneCommande, Magasin, Gerant, PaiementFournisseur, PieceStockée, QuantitéStock
+from stock.models import CommandeFournisseur, Facture, Fournisseur, InfosSortie, LigneCommande, Magasin, Gerant, PaiementFournisseur, QuantitéStock
 
 # Register your models here.
 
@@ -23,11 +24,7 @@ class MagasinFilter(admin.ModelAdmin):
 
 admin.site.register(Magasin,MagasinFilter)
 
-class PieceStockéeFilter(admin.ModelAdmin):
-    list_display = ('id','designation','quantiteStockee')
-    list_filter = ('designation',)
 
-admin.site.register(PieceStockée,PieceStockéeFilter)
 
 ################################
 
@@ -52,7 +49,7 @@ admin.site.register(CommandeFournisseur,CommandeFournisseurFilter)
 
 
 class LigneCommandeFilter(admin.ModelAdmin):
-    list_display = ('id','commandeFournisseur','pieceStockée','quantiteCommande','quantiteRecu')
+    list_display = ('id','commandeFournisseur','piece','quantiteCommande','quantiteRecu')
     list_filter = ('commandeFournisseur',)
 
 admin.site.register(LigneCommande,LigneCommandeFilter)
