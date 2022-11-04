@@ -34,7 +34,9 @@ from .views import (
     ret_update_LigneCommandeAPIView,
     ret_update_MagasinAPIView,
     ret_update_PaiementFournisseurAPIView,
-    ret_update_QuantitéStockAPIView
+    ret_update_QuantitéStockAPIView,
+    liste_create_UserAPIView,
+    ret_update_UserAPIView
 )
 
 urlpatterns = [
@@ -43,6 +45,12 @@ urlpatterns = [
 
     path('gerants/',liste_create_gerantAPIView,name='listeCreerGerant'),
     path('gerants/<int:pk>/detail',ret_update_gerantAPIView,name='retUpdateGerant'),
+
+     # URL : Users
+
+    path('utilisateur/',liste_create_UserAPIView,name='listeCreerGerant'),
+    path('utilisateur/<int:pk>/detail',ret_update_UserAPIView,name='retUpdateGerant'),
+
 
      # URL : fournisseurs
 

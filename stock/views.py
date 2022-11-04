@@ -3,8 +3,35 @@ from rest_framework import  generics,permissions
 from rest_framework.response import Response
 import rest_framework.status as status
 from stock.models import CommandeFournisseur, Facture, Fournisseur, Gerant, InfosSortie, LigneCommande, Magasin, PaiementFournisseur, QuantitéStock
+from django.contrib.auth.models import User
 
-from stock.serializers import CommandeFournisseurSerializer, FactureSerializer, FournisseurSerializer, GerantSerializer, InfosSortieSerializer, LigneCommandeSerializer, MagasinSerializer, PaiementFournisseurSerializer, QuantitéStockSerializer
+from stock.serializers import CommandeFournisseurSerializer, FactureSerializer, FournisseurSerializer, GerantSerializer, InfosSortieSerializer, LigneCommandeSerializer, MagasinSerializer, PaiementFournisseurSerializer, UserSerializer, QuantitéStockSerializer
+
+#### User
+ 
+class UserListCreateAPIView(generics.ListCreateAPIView):
+    '''
+        get, post
+    '''
+
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    paginator = None
+liste_create_UserAPIView = UserListCreateAPIView.as_view()
+
+
+class RetriveUpdateDelUser(generics.RetrieveUpdateDestroyAPIView):
+
+    '''
+        Cette classe permet de faire get update, delete
+    '''
+
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_class = [permissions.IsAdminUser]
+
+ret_update_UserAPIView = RetriveUpdateDelUser.as_view()
+
 
 #### Gerant
  
@@ -147,6 +174,11 @@ class CommandeFournisseurListCreateAPIView(generics.ListCreateAPIView):
     queryset = CommandeFournisseur.objects.all()
     serializer_class = CommandeFournisseurSerializer
     paginator = None
+
+    def  gerantAll(self,request):
+        queryset = Gerant.objects.all()
+        serializer_class = GerantSerializer(queryset,many=True)
+        return Response(serializer_class.data)
 liste_create_CommandeFournisseurAPIView = CommandeFournisseurListCreateAPIView.as_view()
 
 class RetriveUpdateDelCommandeFournisseur(generics.RetrieveUpdateDestroyAPIView):

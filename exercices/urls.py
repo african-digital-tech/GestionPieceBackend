@@ -4,6 +4,7 @@ from .views import (
 )
 
 urlpatterns = [
-    path("exercice/",create_list_ExerciceAPIView , name='listCreateExercice'),
-    path("exercice/<int:pk>/",upd_Del_Retr_ExerciceAPIView , name='updDelRetrExercice'),
+    path("", create_list_ExerciceAPIView, name='listCreateExercice'),
+    path("<int:pk>/detail", upd_Del_Retr_ExerciceAPIView,
+         name='updDelRetrExercice'),
 ]
