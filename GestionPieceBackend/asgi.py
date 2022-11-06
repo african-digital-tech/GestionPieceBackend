@@ -14,3 +14,8 @@ from django.core.asgi import get_asgi_application
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "GestionPieceBackend.settings")
 
 application = get_asgi_application()
+
+
+ALLOWED_HOSTS = ['*']
+
+SECRET_KEY = '3k2b)luux#bt=bd4g=$6num(qqp@%x$wiv#w8o44e9nm%5rrsr'
