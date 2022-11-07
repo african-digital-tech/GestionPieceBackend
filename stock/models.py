@@ -2,7 +2,6 @@
 from email.policy import default
 from venv import create
 from django.db import models
-from sqlalchemy import null
 from exercices.models import Exercice
 from pieces.models import Piece
 from django.contrib.auth.models import User
