@@ -1,5 +1,4 @@
 
-from attr import field
 from rest_framework import  serializers
 from pieces.models import Categorie, Piece
 

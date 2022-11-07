@@ -1,4 +1,3 @@
-from nbformat import read
 from rest_framework import serializers
 
 class RelatedGerantSerializer(serializers.Serializer):

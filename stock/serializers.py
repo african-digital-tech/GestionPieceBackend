@@ -1,6 +1,4 @@
 
-from nbformat import read
-from regex import F
 from rest_framework import  serializers
 from pieces.models import Piece
 from stock.linkSerializers import RelatedGerantSerializer
