@@ -49,7 +49,7 @@ urlpatterns = [
      # URL : Users
 
     path('utilisateur/',liste_create_UserAPIView,name='listeCreerGerant'),
-    path('utilisateur/<int:pk>/detail',ret_update_UserAPIView,name='retUpdateGerant'),
+    path('utilisateur/<str:username>/detail',ret_update_UserAPIView,name='retUpdateGerant'),
 
 
      # URL : fournisseurs

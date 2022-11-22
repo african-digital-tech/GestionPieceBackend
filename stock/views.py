@@ -14,9 +14,16 @@ class UserListCreateAPIView(generics.ListCreateAPIView):
         get, post
     '''
 
-    queryset = User.objects.all()
+    #queryset = User.objects.all()
     serializer_class = UserSerializer
     paginator = None
+    def get_queryset(self):
+        usernameGetted= self.request.query_params.get('username')
+        if usernameGetted is not None :
+            return User.objects.filter(username=usernameGetted)
+        else:
+            return f'{usernameGetted} est introuvable'
+    
 liste_create_UserAPIView = UserListCreateAPIView.as_view()
 
 
@@ -29,6 +36,7 @@ class RetriveUpdateDelUser(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_class = [permissions.IsAdminUser]
+    
 
 ret_update_UserAPIView = RetriveUpdateDelUser.as_view()
 

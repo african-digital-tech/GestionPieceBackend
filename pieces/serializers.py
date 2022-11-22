@@ -18,7 +18,8 @@ class PieceSerializer(serializers.ModelSerializer):
     '''
         Liste de toutes les pièces
     '''
-
+    read_only = True
     class Meta:
         model= Piece
-        field = '__all__'
+        fields = ('id','designation')
+        depth = 2

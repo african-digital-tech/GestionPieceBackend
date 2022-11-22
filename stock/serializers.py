@@ -22,11 +22,14 @@ class UserSerializer(serializers.ModelSerializer):
     '''
         liste des gerants des magasins
     '''
-
+    magasin = serializers.SerializerMethodField()
     class Meta:
         model = User
-        fields= ('id','username','first_name','last_name','email')
+        fields= ('id','username','first_name','last_name','email','magasin')
+        filter_fields = ('id','username',)
 
+    def get_magasin(self,obj):
+        return Magasin.objects.filter(gerant=obj.id).values("id","nom")
 
 class FournisseurSerializer(serializers.ModelSerializer):
     '''
