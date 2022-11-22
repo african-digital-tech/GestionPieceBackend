@@ -96,11 +96,10 @@ class InfosSortie(models.Model):
         Piece, on_delete=models.CASCADE, related_name='info_sortie')
 
     quantite = models.IntegerField(default=0)
-    prixSortie = models.FloatField(default=0)
     #dateCreation = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ['id', 'piece', 'magasin', 'quantite', 'prixSortie']
+        ordering = ['id', 'piece', 'magasin', 'quantite']
 
     def __str__(self):
         return f'{self.piece}'
@@ -139,6 +138,7 @@ class LigneCommande(models.Model):
         Piece, on_delete=models.CASCADE, related_name='info_ligneCommande')
     quantiteCommande = models.IntegerField(default=0)
     quantiteRecu = models.IntegerField(default=0)
+    prixSortie = models.FloatField(default=1)
     #dateCreation = models.DateTimeField(auto_now_add=True)
 
     class Meta:

@@ -1,6 +1,5 @@
 
-from nbformat import read
-from regex import F
+from attr import fields
 from rest_framework import  serializers
 from pieces.models import Piece
 from stock.linkSerializers import RelatedGerantSerializer
@@ -25,8 +24,8 @@ class UserSerializer(serializers.ModelSerializer):
     magasin = serializers.SerializerMethodField()
     class Meta:
         model = User
-        fields= ('id','username','first_name','last_name','email','magasin')
-        filter_fields = ('id','username',)
+        fields= ('id','username','first_name','last_name','email','password','is_superuser','is_staff','magasin')
+       
 
     def get_magasin(self,obj):
         return Magasin.objects.filter(gerant=obj.id).values("id","nom")

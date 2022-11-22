@@ -33,7 +33,7 @@ admin.site.register(Magasin, MagasinFilter)
 ################################
 
 class InfosSortieFilter(admin.ModelAdmin):
-    list_display = ('id', 'magasin', 'piece', 'quantite', 'prixSortie')
+    list_display = ('id', 'magasin', 'piece', 'quantite')
     list_filter = ('magasin',)
 
 
@@ -59,7 +59,7 @@ admin.site.register(CommandeFournisseur, CommandeFournisseurFilter)
 
 class LigneCommandeFilter(admin.ModelAdmin):
     list_display = ('id', 'commandeFournisseur', 'piece',
-                    'quantiteCommande', 'quantiteRecu')
+                    'quantiteCommande', 'quantiteRecu','prixSortie')
     list_filter = ('commandeFournisseur',)
 
 

@@ -22,7 +22,7 @@ class UserListCreateAPIView(generics.ListCreateAPIView):
         if usernameGetted is not None :
             return User.objects.filter(username=usernameGetted)
         else:
-            return f'{usernameGetted} est introuvable'
+            return User.objects.all()
     
 liste_create_UserAPIView = UserListCreateAPIView.as_view()
 
