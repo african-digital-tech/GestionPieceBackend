@@ -26,7 +26,6 @@ from .views import (
     liste_create_MagasinAPIView,
     liste_create_PaiementFournisseurAPIView,
     liste_create_QuantitéStockéeAPIView,
-    liste_create_PieceStockéeAPIView,
     ret_update_CommandeFournisseurAPIView,
     ret_update_FactureAPIView,
     ret_update_FournisseurAPIView,
@@ -35,8 +34,9 @@ from .views import (
     ret_update_LigneCommandeAPIView,
     ret_update_MagasinAPIView,
     ret_update_PaiementFournisseurAPIView,
-    ret_update_PieceStockéeAPIView,
-    ret_update_QuantitéStockAPIView
+    ret_update_QuantitéStockAPIView,
+    liste_create_UserAPIView,
+    ret_update_UserAPIView
 )
 
 urlpatterns = [
@@ -45,6 +45,12 @@ urlpatterns = [
 
     path('gerants/',liste_create_gerantAPIView,name='listeCreerGerant'),
     path('gerants/<int:pk>/detail',ret_update_gerantAPIView,name='retUpdateGerant'),
+
+     # URL : Users
+
+    path('utilisateur/',liste_create_UserAPIView,name='listeCreerGerant'),
+    path('utilisateur/<int:pk>/detail',ret_update_UserAPIView,name='retUpdateGerant'),
+
 
      # URL : fournisseurs
 
@@ -56,13 +62,7 @@ urlpatterns = [
     path('magasins/',liste_create_MagasinAPIView,name='listeCreermagasins'),
     path('magasins/<int:pk>/detail',ret_update_MagasinAPIView,name='retUpdatemagasins'),
 
-
-     # URL : PieceStockées
-
-    path('PieceStockees/',liste_create_PieceStockéeAPIView,name='listeCreerPieceStockées'),
-    path('PieceStockées/<int:pk>/detail',ret_update_PieceStockéeAPIView,name='retUpdatePieceStockées'),
-
-    # URL : PieceStockées
+    # URL : QuantitéStock
 
     path('QuantitéStock/',liste_create_QuantitéStockéeAPIView,name='listeCreerQuantitéStock'),
     path('QuantitéStock/<int:pk>/detail',ret_update_QuantitéStockAPIView,name='retUpdateQuantitéStock'),

@@ -1,0 +1,1 @@
+web: gunicorn GestionPieceBackend.wsgi --log-file -
