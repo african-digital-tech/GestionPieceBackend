@@ -183,10 +183,7 @@ class CommandeFournisseurListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = CommandeFournisseurSerializer
     paginator = None
 
-    def  gerantAll(self,request):
-        queryset = Gerant.objects.all()
-        serializer_class = GerantSerializer(queryset,many=True)
-        return Response(serializer_class.data)
+    
 liste_create_CommandeFournisseurAPIView = CommandeFournisseurListCreateAPIView.as_view()
 
 class RetriveUpdateDelCommandeFournisseur(generics.RetrieveUpdateDestroyAPIView):
@@ -213,6 +210,12 @@ class LigneCommandeListCreateAPIView(generics.ListCreateAPIView):
     queryset = LigneCommande.objects.all()
     serializer_class = LigneCommandeSerializer
     paginator = None
+    def get_queryset(self):
+        commandeGetted= self.request.query_params.get('commandeFournisseur')
+        if commandeGetted is not None :
+            return LigneCommande.objects.filter(commandeFournisseur=commandeGetted)
+        else:
+            return LigneCommande.objects.all()
 liste_create_LigneCommandeAPIView = LigneCommandeListCreateAPIView.as_view()
 
 class RetriveUpdateDelLigneCommande(generics.RetrieveUpdateDestroyAPIView):

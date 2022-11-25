@@ -50,7 +50,7 @@ class MagasinSerializer(serializers.ModelSerializer):
         fields= ('id','nom','gerant','gerantData','listPieceEntree','listPieceSortie')
 
     def get_gerantData(self,obj):
-        return User.objects.filter(pk=obj.gerant_id).values("id","username","first_name","last_name","email")
+        return User.objects.filter(pk=obj.gerant_id).values("id","username","first_name","last_name","email")[0]
 
 
 
